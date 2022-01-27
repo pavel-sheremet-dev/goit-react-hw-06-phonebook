@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Contacts = styled.ul`
   @media screen and (min-width: 480px) {
@@ -33,7 +33,7 @@ export const ContactPhone = styled.span`
   padding-bottom: 10px;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;

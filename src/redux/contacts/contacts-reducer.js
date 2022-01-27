@@ -1,30 +1,27 @@
-import { combineReducers } from "redux";
-import TYPES from "./contacts-types";
+import { createReducer } from '@reduxjs/toolkit';
+import { addItem, removeItem, changeFilter } from './contacts-actions';
 
-// const action = {type: 'action/type', payload: 'data'}
+import { combineReducers } from 'redux';
 
 const contactsInitialState =
-  JSON.parse(localStorage.getItem("local-contacts")) ?? [];
+  JSON.parse(localStorage.getItem('local-contacts')) ?? [];
 
-const itemsReducer = (state = contactsInitialState, { type, payload }) => {
-  switch (type) {
-    case TYPES.ADD:
-      return [payload, ...state];
-    case TYPES.REMOVE:
-      return state.filter((contact) => contact.id !== payload);
-    default:
-      return state;
-  }
-};
+// const itemsReducer = createReducer(contactsInitialState, {
+//   [addItem]: (state, { payload }) => [payload, ...state],
+//   [removeItem]: (state, { payload }) =>
+//     state.filter(({ id }) => id !== payload),
+// });
 
-const filterReducer = (state = "", { type, payload }) => {
-  switch (type) {
-    case TYPES.FILTER_CHANGE:
-      return payload;
-    default:
-      return state;
-  }
-};
+const itemsReducer = createReducer(contactsInitialState, ({ addCase }) => {
+  addCase(addItem, (state, { payload }) => [payload, ...state]);
+  addCase(removeItem, (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
+  );
+});
+
+const filterReducer = createReducer('', {
+  [changeFilter]: (_, { payload }) => payload,
+});
 
 const contactsReducer = combineReducers({
   items: itemsReducer,

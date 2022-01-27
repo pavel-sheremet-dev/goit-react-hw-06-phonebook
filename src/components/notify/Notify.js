@@ -1,4 +1,4 @@
-import { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
 
 const Notify = () => {
   return (
@@ -6,9 +6,9 @@ const Notify = () => {
       <Toaster
         toastOptions={{
           style: {
-            borderRadius: "10px",
-            background: "#236d44",
-            color: "#fff",
+            borderRadius: '10px',
+            background: '#236d44',
+            color: '#fff',
           },
         }}
       />

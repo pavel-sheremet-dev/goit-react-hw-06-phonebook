@@ -1,21 +1,16 @@
-import TYPES from "./theme-types";
+import { createReducer } from '@reduxjs/toolkit';
+import { toggleTheme } from './theme-actions';
 
-const themes = {
-  dark: "dark",
-  light: "light",
-};
+const [dark, light] = ['dark', 'light'];
 
-const { dark, light } = themes;
+const initialState = localStorage.getItem('theme') ?? dark;
 
-const initialState = localStorage.getItem("theme") ?? dark;
+// const themeReducer = createReducer(initialState, {
+//   [toggleTheme]: (_, { payload }) => (payload === light ? dark : light),
+// });
 
-const themeReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case TYPES.TOGGLE:
-      return payload === light ? dark : light;
-    default:
-      return state;
-  }
-};
+const themeReducer = createReducer(initialState, ({ addCase }) => {
+  addCase(toggleTheme, (_, { payload }) => (payload === light ? dark : light));
+});
 
 export default themeReducer;

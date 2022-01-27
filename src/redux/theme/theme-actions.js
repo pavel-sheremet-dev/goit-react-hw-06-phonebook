@@ -1,6 +1,3 @@
-import TYPES from "./theme-types";
+import { createAction } from '@reduxjs/toolkit';
 
-export const toggleTheme = (currentTheme) => ({
-  type: TYPES.TOGGLE,
-  payload: currentTheme,
-});
+export const toggleTheme = createAction('theme/toggle');

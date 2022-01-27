@@ -1,19 +1,19 @@
-import { useState, useEffect, memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleTheme } from "../../redux/theme/theme-actions";
+import { useState, useEffect, memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleTheme } from '../../redux/theme/theme-actions';
 
-import sprite from "../../images/sprite.svg";
-import { ThemeBtn, ThemeIcon } from "./ThemeSwitcher.styled";
+import sprite from '../../images/sprite.svg';
+import { ThemeBtn, ThemeIcon } from './ThemeSwitcher.styled';
 
 const ThemeSwitcher = () => {
   const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(1);
 
-  const theme = useSelector((state) => state.theme);
+  const theme = useSelector(state => state.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const handleClick = () => {
@@ -25,7 +25,7 @@ const ThemeSwitcher = () => {
   };
 
   const hideElement = () => {
-    const promise = new Promise((res) => {
+    const promise = new Promise(res => {
       setOpacity(0);
       setScale(0.7);
       setTimeout(() => {
@@ -39,7 +39,7 @@ const ThemeSwitcher = () => {
     <ThemeBtn type="button" onClick={handleClick}>
       <ThemeIcon opacity={opacity} scale={scale}>
         <use
-          href={`${sprite}#${theme === "light" ? "icon-sun" : "icon-moon"}`}
+          href={`${sprite}#${theme === 'light' ? 'icon-sun' : 'icon-moon'}`}
         ></use>
       </ThemeIcon>
     </ThemeBtn>

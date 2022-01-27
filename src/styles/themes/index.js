@@ -1,5 +1,5 @@
-import { light } from "./light";
-import { dark } from "./dark";
+import { light } from './light';
+import { dark } from './dark';
 
 const themes = { light, dark };
 

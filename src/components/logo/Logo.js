@@ -1,4 +1,4 @@
-import { FirstWord, LogoStyled } from "./Logo.styled";
+import { FirstWord, LogoStyled } from './Logo.styled';
 
 const Logo = () => {
   return (

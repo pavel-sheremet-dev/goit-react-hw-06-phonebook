@@ -1,16 +1,13 @@
-import TYPES from "./contacts-types";
+import { createAction, nanoid } from '@reduxjs/toolkit';
+// import shortid from 'shortid';
 
-export const addItem = (item) => ({
-  type: TYPES.ADD,
-  payload: item,
+// Prepare Callbacks to Customize Action Contents
+// https://redux-toolkit.js.org/api/createAction#using-prepare-callbacks-to-customize-action-contents
+
+const formContact = contact => ({
+  payload: { ...contact, id: nanoid() },
 });
 
-export const removeItem = (id) => ({
-  type: TYPES.REMOVE,
-  payload: id,
-});
-
-export const changeFilter = (value) => ({
-  type: TYPES.FILTER_CHANGE,
-  payload: value,
-});
+export const addItem = createAction('items/add', formContact);
+export const removeItem = createAction('items/remove');
+export const changeFilter = createAction('filter/change');

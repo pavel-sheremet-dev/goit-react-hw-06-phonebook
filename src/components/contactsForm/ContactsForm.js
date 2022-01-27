@@ -1,38 +1,36 @@
-import React, { useState, memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import PropTypes from "prop-types";
-import shortid from "shortid";
-import { Form } from "./ContactsForm.styled";
-import { ButtonStyled } from "../Button/Buttonstyled";
-import { InputName, Label, InputField } from "../input/Input.styled";
-import { addItem } from "../../redux/contacts/contacts-actions";
-import toast from "react-hot-toast";
+import React, { useState, memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Form } from './ContactsForm.styled';
+import { ButtonStyled } from '../Button/Buttonstyled';
+import { InputName, Label, InputField } from '../input/Input.styled';
+import { addItem } from '../../redux/contacts/contacts-actions';
+import toast from 'react-hot-toast';
 
 const ContactsForm = () => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  const contacts = useSelector((state) => state.contacts.items);
+  const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const inputName = e.target.name;
     const value = e.target.value;
-    if (inputName === "name") {
+    if (inputName === 'name') {
       setName(value);
     }
-    if (inputName === "number") {
+    if (inputName === 'number') {
       setNumber(value);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     const normalizeName = textNormalize(name);
 
     const isInContacts = contacts.some(
-      (item) => item.name.toLowerCase() === normalizeName
+      item => item.name.toLowerCase() === normalizeName,
     );
 
     if (isInContacts) {
@@ -40,20 +38,16 @@ const ContactsForm = () => {
       return;
     }
 
-    const newContact = generateContact(name, number);
+    // const newContact = generateContact(name, number);
 
-    dispatch(addItem(newContact));
+    dispatch(addItem({ name, number }));
 
-    setName("");
-    setNumber("");
+    setName('');
+    setNumber('');
   };
 
-  const textNormalize = (text) => {
+  const textNormalize = text => {
     return text.toLowerCase();
-  };
-
-  const generateContact = (name, number) => {
-    return { id: shortid.generate(), name, number };
   };
 
   return (

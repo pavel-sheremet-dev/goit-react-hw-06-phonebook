@@ -1,7 +1,7 @@
 // import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../../redux/contacts/contacts-actions";
-import { ButtonStyled } from "../Button/Buttonstyled";
+import { useSelector, useDispatch } from 'react-redux';
+import { removeItem } from '../../redux/contacts/contacts-actions';
+import { ButtonStyled } from '../Button/Buttonstyled';
 import {
   ContactInfo,
   ContactName,
@@ -9,18 +9,18 @@ import {
   ContactsItem,
   Contacts,
   PhoneLink,
-} from "./ContactsList.styled";
-import { useMemo } from "react";
+} from './ContactsList.styled';
+import { useMemo } from 'react';
 
 const ContactsList = () => {
-  const contacts = useSelector((state) => state.contacts.items);
-  const filter = useSelector((state) => state.contacts.filter);
+  const contacts = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
 
   const filteredContacts = useMemo(() => {
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter)
+      name.toLowerCase().includes(normalizedFilter),
     );
   }, [contacts, filter]);
 
