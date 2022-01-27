@@ -38,8 +38,6 @@ const ContactsForm = () => {
       return;
     }
 
-    // const newContact = generateContact(name, number);
-
     dispatch(addItem({ name, number }));
 
     setName('');
@@ -86,7 +84,3 @@ const ContactsForm = () => {
 };
 
 export default memo(ContactsForm);
-
-// ContactsForm.propTypes = {
-//   onAddContact: PropTypes.func.isRequired,
-// };

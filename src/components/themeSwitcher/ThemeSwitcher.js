@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/theme/theme-actions';
 
@@ -11,10 +11,6 @@ const ThemeSwitcher = () => {
 
   const theme = useSelector(state => state.theme);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    localStorage.setItem('theme', theme);
-  }, [theme]);
 
   const handleClick = () => {
     hideElement().then(() => {

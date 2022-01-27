@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 // components
@@ -10,10 +9,6 @@ import Section from '../section/Section';
 
 const Contacts = () => {
   const contacts = useSelector(state => state.contacts.items);
-
-  useEffect(() => {
-    localStorage.setItem('local-contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   return (
     <>

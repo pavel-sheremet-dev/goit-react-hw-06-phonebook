@@ -19,8 +19,12 @@ const itemsReducer = createReducer(contactsInitialState, ({ addCase }) => {
   );
 });
 
-const filterReducer = createReducer('', {
-  [changeFilter]: (_, { payload }) => payload,
+// const filterReducer = createReducer('', {
+//   [changeFilter]: (_, { payload }) => payload,
+// });
+
+const filterReducer = createReducer('', ({ addCase }) => {
+  addCase(changeFilter, (_, { payload }) => payload);
 });
 
 const contactsReducer = combineReducers({

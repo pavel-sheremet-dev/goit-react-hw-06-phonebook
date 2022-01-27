@@ -1,5 +1,4 @@
 import { createAction, nanoid } from '@reduxjs/toolkit';
-// import shortid from 'shortid';
 
 // Prepare Callbacks to Customize Action Contents
 // https://redux-toolkit.js.org/api/createAction#using-prepare-callbacks-to-customize-action-contents
