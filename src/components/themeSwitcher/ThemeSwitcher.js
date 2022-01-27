@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleTheme } from '../../redux/theme/theme-actions';
+import { themeActions } from '../../redux/theme';
 
 import sprite from '../../images/sprite.svg';
 import { ThemeBtn, ThemeIcon } from './ThemeSwitcher.styled';
@@ -18,7 +18,7 @@ const ThemeSwitcher = () => {
 
   const handleClick = () => {
     hideElement().then(() => {
-      dispatch(toggleTheme(theme));
+      dispatch(themeActions.toggleTheme(theme));
       setOpacity(1);
       setScale(1);
     });

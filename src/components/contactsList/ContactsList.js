@@ -1,6 +1,6 @@
 // import PropTypes from "prop-types";
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem } from '../../redux/contacts/contacts-actions';
+import { contactsActions } from '../../redux/contacts';
 import { ButtonStyled } from '../Button/Buttonstyled';
 import {
   ContactInfo,
@@ -34,7 +34,10 @@ const ContactsList = () => {
               <PhoneLink href={`tel:${name}`}>{number}</PhoneLink>
             </ContactPhone>
           </ContactInfo>
-          <ButtonStyled type="button" onClick={() => dispatch(removeItem(id))}>
+          <ButtonStyled
+            type="button"
+            onClick={() => dispatch(contactsActions.removeItem(id))}
+          >
             Remove
           </ButtonStyled>
         </ContactsItem>

@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form } from './ContactsForm.styled';
 import { ButtonStyled } from '../Button/Buttonstyled';
 import { InputName, Label, InputField } from '../input/Input.styled';
-import { addItem } from '../../redux/contacts/contacts-actions';
+import { contactsActions } from '../../redux/contacts';
+
 import toast from 'react-hot-toast';
 
 const ContactsForm = () => {
@@ -40,7 +41,7 @@ const ContactsForm = () => {
 
     // const newContact = generateContact(name, number);
 
-    dispatch(addItem({ name, number }));
+    dispatch(contactsActions.addItem({ name, number }));
 
     setName('');
     setNumber('');
@@ -86,7 +87,3 @@ const ContactsForm = () => {
 };
 
 export default memo(ContactsForm);
-
-// ContactsForm.propTypes = {
-//   onAddContact: PropTypes.func.isRequired,
-// };

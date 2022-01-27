@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
 
-import contactsReducer from './contacts/contacts-reducer';
-import themeReducer from './theme/theme-reducer';
+import contactsReducer from './contacts/contacts-slice';
+import themeReducer from './theme/theme-slice';
 
 const logger = createLogger({
   timestamp: false,
