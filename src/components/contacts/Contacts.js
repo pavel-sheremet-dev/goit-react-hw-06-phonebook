@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getItems } from '../../redux/contacts/contacts-actions';
+import { getItems } from '../../redux/contacts/contacts-operations';
 
 // components
 import ContactsForm from '../contactsForm/ContactsForm';
@@ -11,6 +11,7 @@ import Section from '../section/Section';
 
 const Contacts = () => {
   const contacts = useSelector(state => state.contacts.items);
+  const error = useSelector(state => state.contacts.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const Contacts = () => {
         <ContactsForm />
       </Section>
       <Section titleLevel="h2" title="Your Contacts">
+        {error && <div>Somesing went wrong</div>}
         {contacts.length ? (
           <>
             <Filter />

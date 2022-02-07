@@ -1,21 +1,23 @@
-import { createAction, nanoid } from '@reduxjs/toolkit';
+import { createAction } from '@reduxjs/toolkit';
 
-// Prepare Callbacks to Customize Action Contents
-// https://redux-toolkit.js.org/api/createAction#using-prepare-callbacks-to-customize-action-contents
+// getItem
 
-//
-import { getData } from '../../services/apiServices';
+export const getItemsRequest = createAction('items/getItemsRequest');
+export const getItemsSuccess = createAction('items/getItemsSuccess');
+export const getItemsError = createAction('items/getItemsError');
 
-const formContact = contact => ({
-  payload: { ...contact, id: nanoid() },
-});
+// addItem
 
-export const addItem = createAction('items/add', formContact);
-export const removeItem = createAction('items/remove');
+export const addItemRequest = createAction('items/addItemRequest');
+export const addItemSuccess = createAction('items/addItemSuccess');
+export const addItemError = createAction('items/addItemError');
+
+// removeItem
+
+export const removeItemRequest = createAction('items/removeItemRequest');
+export const removeItemSuccess = createAction('items/removeItemSuccess');
+export const removeItemError = createAction('items/removeItemError');
+
+// changeFilter
+
 export const changeFilter = createAction('filter/change');
-
-export const setItems = createAction('items/set');
-
-export const getItems = () => dispatch => {
-  getData().then(contacts => dispatch(setItems(contacts)));
-};

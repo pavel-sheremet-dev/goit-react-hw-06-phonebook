@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form } from './ContactsForm.styled';
 import { ButtonStyled } from '../Button/Buttonstyled';
 import { InputName, Label, InputField } from '../input/Input.styled';
-import { addItem } from '../../redux/contacts/contacts-actions';
+import { addItem } from '../../redux/contacts/contacts-operations';
 import toast from 'react-hot-toast';
 
 const ContactsForm = () => {
