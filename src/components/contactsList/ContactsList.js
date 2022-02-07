@@ -1,4 +1,5 @@
 // import PropTypes from "prop-types";
+import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem } from '../../redux/contacts/contacts-actions';
 import { ButtonStyled } from '../Button/Buttonstyled';
@@ -10,7 +11,6 @@ import {
   Contacts,
   PhoneLink,
 } from './ContactsList.styled';
-import { useMemo } from 'react';
 
 const ContactsList = () => {
   const contacts = useSelector(state => state.contacts.items);

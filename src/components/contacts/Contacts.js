@@ -1,4 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getItems } from '../../redux/contacts/contacts-actions';
 
 // components
 import ContactsForm from '../contactsForm/ContactsForm';
@@ -9,6 +11,11 @@ import Section from '../section/Section';
 
 const Contacts = () => {
   const contacts = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
 
   return (
     <>

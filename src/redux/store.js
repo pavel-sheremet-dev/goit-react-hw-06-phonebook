@@ -10,6 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { myMiddleware } from './middlewares/middlewares';
 
 import storage from 'redux-persist/lib/storage';
 
@@ -19,7 +20,8 @@ import themeReducer from './theme/theme-reducer';
 const persistContactsConfig = {
   key: 'local-contacts',
   storage,
-  whitelist: ['items'],
+  // whitelist: ['items'],
+  whitelist: [],
 };
 
 const persistRootConfig = {
@@ -48,6 +50,7 @@ const store = configureStore({
       },
     }),
     logger,
+    myMiddleware,
   ],
   devTools: process.env.NODE_ENV !== 'production',
 });

@@ -1,5 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addItem, removeItem, changeFilter } from './contacts-actions';
+import {
+  addItem,
+  removeItem,
+  changeFilter,
+  setItems,
+} from './contacts-actions';
 
 import { combineReducers } from 'redux';
 
@@ -13,6 +18,7 @@ const contactsInitialState =
 // });
 
 const itemsReducer = createReducer(contactsInitialState, ({ addCase }) => {
+  addCase(setItems, (_, { payload }) => payload);
   addCase(addItem, (state, { payload }) => [payload, ...state]);
   addCase(removeItem, (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
