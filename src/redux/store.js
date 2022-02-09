@@ -10,19 +10,11 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { myMiddleware } from './middlewares/middlewares';
+import { contactsApi } from './contacts/contacts-api';
 
 import storage from 'redux-persist/lib/storage';
 
-import contactsReducer from './contacts/contacts-reducer';
 import themeReducer from './theme/theme-reducer';
-
-const persistContactsConfig = {
-  key: 'local-contacts',
-  storage,
-  // whitelist: ['items'],
-  whitelist: [],
-};
 
 const persistRootConfig = {
   key: 'local-theme',
@@ -31,7 +23,7 @@ const persistRootConfig = {
 };
 
 const rootReducer = combineReducers({
-  contacts: persistReducer(persistContactsConfig, contactsReducer),
+  [contactsApi.reducerPath]: contactsApi.reducer,
   theme: themeReducer,
 });
 
@@ -50,7 +42,7 @@ const store = configureStore({
       },
     }),
     logger,
-    myMiddleware,
+    contactsApi.middleware,
   ],
   devTools: process.env.NODE_ENV !== 'production',
 });

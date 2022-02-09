@@ -1,13 +1,12 @@
-import { memo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { memo, useState, useEffect } from 'react';
 import { InputName, Label, InputField } from '../input/Input.styled';
-import { changeFilter } from '../../redux/contacts/contacts-actions';
 
-const Filter = () => {
-  const filter = useSelector(state => state.contacts.filter);
-  const dispatch = useDispatch();
+const Filter = ({ getFilterValue }) => {
+  const [filter, setFilter] = useState('');
 
-  const handleChange = e => dispatch(changeFilter(e.target.value));
+  useEffect(() => {
+    getFilterValue(filter);
+  }, [filter, getFilterValue]);
 
   return (
     <Label>
@@ -15,7 +14,7 @@ const Filter = () => {
       <InputField
         type="text"
         name="filter"
-        onChange={handleChange}
+        onChange={e => setFilter(e.target.value)}
         value={filter}
         placeholder="Enter search name"
         autoComplete="off"

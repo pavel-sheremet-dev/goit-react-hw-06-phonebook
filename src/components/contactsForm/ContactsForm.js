@@ -1,17 +1,19 @@
 import React, { useState, memo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Form } from './ContactsForm.styled';
 import { ButtonStyled } from '../Button/Buttonstyled';
 import { InputName, Label, InputField } from '../input/Input.styled';
-import { addItem } from '../../redux/contacts/contacts-actions';
 import toast from 'react-hot-toast';
+import {
+  useAddContactMutation,
+  useGetContactsQuery,
+} from '../../redux/contacts/contacts-api';
 
 const ContactsForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const contacts = useSelector(state => state.contacts.items);
-  const dispatch = useDispatch();
+  const { data: contacts } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
 
   const handleChange = e => {
     const inputName = e.target.name;
@@ -38,7 +40,7 @@ const ContactsForm = () => {
       return;
     }
 
-    dispatch(addItem({ name, number }));
+    addContact({ name, number });
 
     setName('');
     setNumber('');

@@ -1,7 +1,5 @@
 // import PropTypes from "prop-types";
 import { useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeItem } from '../../redux/contacts/contacts-actions';
 import { ButtonStyled } from '../Button/Buttonstyled';
 import {
   ContactInfo,
@@ -11,11 +9,10 @@ import {
   Contacts,
   PhoneLink,
 } from './ContactsList.styled';
+import { useDeleteContactMutation } from '../../redux/contacts/contacts-api';
 
-const ContactsList = () => {
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.contacts.filter);
-  const dispatch = useDispatch();
+const ContactsList = ({ contacts, filter }) => {
+  const [deleteContact] = useDeleteContactMutation();
 
   const filteredContacts = useMemo(() => {
     const normalizedFilter = filter.toLowerCase();
@@ -34,7 +31,7 @@ const ContactsList = () => {
               <PhoneLink href={`tel:${name}`}>{number}</PhoneLink>
             </ContactPhone>
           </ContactInfo>
-          <ButtonStyled type="button" onClick={() => dispatch(removeItem(id))}>
+          <ButtonStyled type="button" onClick={() => deleteContact(id)}>
             Remove
           </ButtonStyled>
         </ContactsItem>

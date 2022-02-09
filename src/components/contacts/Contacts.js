@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getItems } from '../../redux/contacts/contacts-actions';
+import { useState } from 'react';
+import { useGetContactsQuery } from '../../redux/contacts/contacts-api';
 
 // components
 import ContactsForm from '../contactsForm/ContactsForm';
@@ -10,12 +9,12 @@ import EmptyContactsNotify from '../notify/EmptyContactsNotify';
 import Section from '../section/Section';
 
 const Contacts = () => {
-  const contacts = useSelector(state => state.contacts.items);
-  const dispatch = useDispatch();
+  const { data: contacts, isSuccess } = useGetContactsQuery();
+  const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    dispatch(getItems());
-  }, [dispatch]);
+  const getFilterValue = value => {
+    setFilter(value);
+  };
 
   return (
     <>
@@ -23,10 +22,10 @@ const Contacts = () => {
         <ContactsForm />
       </Section>
       <Section titleLevel="h2" title="Your Contacts">
-        {contacts.length ? (
+        {isSuccess && contacts.length ? (
           <>
-            <Filter />
-            <ContactsList />
+            <Filter getFilterValue={getFilterValue} />
+            <ContactsList contacts={contacts} filter={filter} />
           </>
         ) : (
           <EmptyContactsNotify />
