@@ -1,6 +1,5 @@
-// import PropTypes from "prop-types";
 import { useMemo } from 'react';
-import { ButtonStyled } from '../Button/Buttonstyled';
+import { ButtonStyled } from 'components/common/Button/Buttonstyled';
 import {
   ContactInfo,
   ContactName,
@@ -9,7 +8,9 @@ import {
   Contacts,
   PhoneLink,
 } from './ContactsList.styled';
-import { useDeleteContactMutation } from '../../redux/contacts/contacts-api';
+import { contactsHooks } from 'redux/contacts';
+
+const { useDeleteContactMutation } = contactsHooks;
 
 const ContactsList = ({ contacts, filter }) => {
   const [deleteContact] = useDeleteContactMutation();

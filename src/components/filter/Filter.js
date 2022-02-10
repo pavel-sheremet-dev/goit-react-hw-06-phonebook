@@ -1,5 +1,9 @@
 import { memo, useState, useEffect } from 'react';
-import { InputName, Label, InputField } from '../input/Input.styled';
+import {
+  InputName,
+  Label,
+  InputField,
+} from 'components/common/input/Input.styled';
 
 const Filter = ({ getFilterValue }) => {
   const [filter, setFilter] = useState('');

@@ -1,12 +1,15 @@
 import React, { useState, memo } from 'react';
 import { Form } from './ContactsForm.styled';
-import { ButtonStyled } from '../Button/Buttonstyled';
-import { InputName, Label, InputField } from '../input/Input.styled';
-import toast from 'react-hot-toast';
+import { ButtonStyled } from 'components/common/Button/Buttonstyled';
 import {
-  useAddContactMutation,
-  useGetContactsQuery,
-} from '../../redux/contacts/contacts-api';
+  InputName,
+  Label,
+  InputField,
+} from 'components/common/input/Input.styled';
+import toast from 'react-hot-toast';
+import { contactsHooks } from 'redux/contacts';
+
+const { useAddContactMutation, useGetContactsQuery } = contactsHooks;
 
 const ContactsForm = () => {
   const [name, setName] = useState('');

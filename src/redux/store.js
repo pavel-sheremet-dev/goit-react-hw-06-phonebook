@@ -14,7 +14,7 @@ import { contactsApi } from './contacts/contacts-api';
 
 import storage from 'redux-persist/lib/storage';
 
-import themeReducer from './theme/theme-reducer';
+import themeReducer from './theme/theme-slice';
 
 const persistRootConfig = {
   key: 'local-theme',
