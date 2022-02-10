@@ -5,8 +5,6 @@ import { toggleTheme } from '../../redux/theme/theme-actions';
 import sprite from '../../images/sprite.svg';
 import { ThemeBtn, ThemeIcon } from './ThemeSwitcher.styled';
 
-import { addContact } from '../../services/apiServices';
-
 const ThemeSwitcher = () => {
   const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(1);
@@ -20,8 +18,6 @@ const ThemeSwitcher = () => {
       setOpacity(1);
       setScale(1);
     });
-
-    addContact({ name: 'papa', number: '35154654' });
   };
 
   const hideElement = () => {
